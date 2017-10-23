@@ -12,16 +12,24 @@ def draw_pupil(x, y, points, line, fill):
     color(line, fill)
 
 
-    circle(50)
+    circle(100)
     
     for i in range(points):
         penup()
-        lt(90)
-        fd(50)
         pendown()
+
         
-        rt(180)
-        fd(50)
+        lt(350)
+
+        
+        fd(100)
+        lt(turn)
+
+
+        
+        
+        
+        
         
     end_fill()
 
