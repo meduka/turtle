@@ -1,8 +1,18 @@
 from turtle import *
 
+import math
+
+boi = Turtle()
+
+boi2 = Turtle()
+
+
+boi2.fd(100)
+
+
 def draw_pupil(x, y, points, line, fill):
     penup()
-    goto(x,y)
+    boi.goto(x,y)
     pendown()
 
     turn = 180 - (360 / points)
@@ -19,7 +29,7 @@ def draw_pupil(x, y, points, line, fill):
         pendown()
 
         
-        lt(350)
+        lt(60)
 
         
         fd(100)
@@ -40,4 +50,6 @@ draw_pupil(0, 0, 36, "black", "blue")
 
 goto(0)
 
+
+degrees(2*math.pi)
 done()
