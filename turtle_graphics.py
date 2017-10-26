@@ -1,58 +1,112 @@
 from turtle import *
-
 import math
 
-boi = Turtle()
+ted = Turtle()
 
-boi2 = Turtle()
+fred = Turtle()
 
 
 
-boi2.fd(100)
+def draw_eye(x, y, line, fill):
+    penup()
+    
+    ted.goto(x, y)
+    
+    pendown()
 
-boi.shapesize(10)
+    color(line, fill)
+
+    begin_fill()
+
+    for i in range(1):
+        
+        ted.lt(45)
+        ted.fd(100)
+        ted.rt(45)
+        ted.fd(100)
+        ted.rt(45)
+        ted.fd(100)
+        ted.rt(90)
+        ted.fd(50)
+        ted.rt(45)
+        ted.fd(170)
+        ted.rt(45)
+        ted.fd(50)
+    end_fill()
+
+
+
+    
+
 
 def draw_pupil(x, y, points, line, fill):
     penup()
-    boi.goto(x,y)
+    goto(x, y)
     pendown()
 
     turn = 180 - (360 / points)
 
-    radius = 50
-
     color(line, fill)
 
-
-    circle(100)
-    
+    begin_fill()
     for i in range(points):
-        penup()
-        pendown()
-
-        
-        lt(60)
-
-        
         fd(100)
         lt(turn)
-
-
-        
-        
-        
-        
-        
     end_fill()
 
+
+speed(10)
+
+
+
+
+
+
+def blink(x, y):
+
+    clear()
+
+    ted.hideturtle()
+
+    ted.goto(x, y)
+
+    for i in range(10):
+        #placeholder
+        ted.fd(100)
+        ted.lt(90)
+        #placeholder
+
+    ted.showturtle()
+
+
+
+
+draw_eye(-100, 0, "white", "white")
+
+draw_pupil(-50, 5, 36, "black", "blue")
+
+
+def drawLogarithmicSpiral(a, b, line):
+  # This sets the turtle cursor to the center of the screen and readies it for drawing
+    ted.up()
+    ted.setpos(0, 0)
+    ted.down()
+
+    color(line)
+
+
+    # This is an arbitrary range that seems to make the prettiest spirals
+    # The last parameter is the amount the cursor moves per step. Feel free to mess around with the numbers
+    # and see what happens!
+    for i in range(0, 3000, 5):
+      # Draw a spiral 
+        t = math.radians(i)
+        x = a*math.exp(b*t)*math.cos(t)
+        y = a*math.exp(b*t)*math.sin(t)
+        # Since our turtle is down, we'll be drawing the spiral as we move positions.
+        ted.setpos(x, y)
         
 
-draw_pupil(0, 0, 36, "black", "blue")
+# These two values for a and b are very arbitrary, change them up and see what happens!
+drawLogarithmicSpiral(0.20, 0.20, "white")
 
-
-goto(0)
-
-
-
-degrees(2*math.pi)
-done()
