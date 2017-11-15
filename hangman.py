@@ -5,6 +5,12 @@ Gr8 Hangman Game
 Manuela C.
 
 """
+
+
+strikes = 0
+limit = 6
+
+
 def show_splash_screen():
 
     print("_____________________  ")
@@ -81,18 +87,21 @@ def display_board(solved):
     print(solved)
 
 
-def show_result():
-    print("You Won!")
+def show_result(strikes, limit):
+    if strikes < limit:
+        print("You win!")
+
+    else:
+        print("You lose!")
+        
     
-def play():
+def play(strikes, limit):
     show_splash_screen()
     puzzle = get_puzzle()
     guesses = ""
     solved = get_solved(puzzle, guesses)
 
-    strikes = 0
-    limit = 6
-
+   
     print("")
     print("")
 
@@ -178,12 +187,24 @@ def play():
                 print("    |")
 
 
-
-
         guesses += letter
         solved = get_solved(puzzle, guesses)
         display_board(solved)
 
-    show_result()
+    show_result(strikes, limit)
 
-play()
+
+def show_credits():
+    print("")
+    print("Manuela C.")
+    print("November 21")
+    print("")
+    
+playing = True
+
+while playing:
+    play(strikes, limit)
+    playing = play_again()
+
+show_credits()
+
