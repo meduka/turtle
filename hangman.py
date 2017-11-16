@@ -6,6 +6,14 @@ Manuela C.
 
 """
 
+"""
+thu nov 16
+
+strikes still dont work
+
+but display hang is fixed
+
+"""
 
 strikes = 0
 limit = 6
@@ -83,25 +91,7 @@ def get_guess():
     letter = input()
     return letter
 
-def display_board(solved):
-    print(solved)
-
-
-def show_result(strikes, limit):
-    if strikes < limit:
-        print("You win!")
-
-    else:
-        print("You lose!")
-        
-    
-def play(strikes, limit):
-    show_splash_screen()
-    puzzle = get_puzzle()
-    guesses = ""
-    solved = get_solved(puzzle, guesses)
-
-   
+def display_board(solved, strikes):
     print("")
     print("")
 
@@ -116,14 +106,87 @@ def play(strikes, limit):
     print("")
     print("")
 
+
+    if strikes == 1:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         0")
+        print("    |        ")
+        print("    |        ")
+        print("    |")
+        print("    |")
+
+    if strikes == 2:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         0")
+        print("    |         |")
+        print("    |        ")
+        print("    |")
+        print("    |")
+
+    if strikes == 3:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         0")
+        print("    |         |\\ ")
+        print("    |        ")
+        print("    |")
+        print("    |")
+
+    if strikes == 4:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         0")
+        print("    |        /|\\ ")
+        print("    |        ")
+        print("    |")
+        print("    |")
+
+    if strikes == 5:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         0")
+        print("    |        /|\\ ")
+        print("    |          \\ ")
+        print("    |")
+        print("    |")
+
+    if strikes == 6:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         0")
+        print("    |        /|\\ ")
+        print("    |        / \\ ")
+        print("    |")
+        print("    |")
+
+        
+    print(solved)
+
+
+def show_result(strikes, limit):
+    if strikes <= limit:
+        print("You win!")
+
+    if strikes > limit:
+        print("You lose!")
+        
+    
+def play(strikes, limit):
+    puzzle = get_puzzle()
+    guesses = ""
+    solved = get_solved(puzzle, guesses)
+
+    strikes = 0
+    limit = 6
+
+    display_board(solved, strikes)
+
     print("Guess a letter:")
 
     print("")
     print("")
-
-    print(solved)
-
-
 
     
     while solved != puzzle:
@@ -132,66 +195,30 @@ def play(strikes, limit):
         if letter not in puzzle:
             strikes += 1
 
-            if strikes == 1:
-                print("     _________ ")
-                print("    |         |")
-                print("    |         0")
-                print("    |        ")
-                print("    |        ")
-                print("    |")
-                print("    |")
 
-            if strikes == 2:
-                print("     _________ ")
-                print("    |         |")
-                print("    |         0")
-                print("    |         |")
-                print("    |        ")
-                print("    |")
-                print("    |")
+        if strikes > limit:
+            show_result(strikes, limit)
+        if puzzle == solved:
+            show_result(strikes, limit)
 
-            if strikes == 3:
-                print("     _________ ")
-                print("    |         |")
-                print("    |         0")
-                print("    |         |\\ ")
-                print("    |        ")
-                print("    |")
-                print("    |")
-
-            if strikes == 4:
-                print("     _________ ")
-                print("    |         |")
-                print("    |         0")
-                print("    |        /|\\ ")
-                print("    |        ")
-                print("    |")
-                print("    |")
-
-            if strikes == 5:
-                print("     _________ ")
-                print("    |         |")
-                print("    |         0")
-                print("    |        /|\\ ")
-                print("    |          \\ ")
-                print("    |")
-                print("    |")
-
-            if strikes == 6:
-                print("     _________ ")
-                print("    |         |")
-                print("    |         0")
-                print("    |        /|\\ ")
-                print("    |        / \\ ")
-                print("    |")
-                print("    |")
-
-
+        
         guesses += letter
         solved = get_solved(puzzle, guesses)
-        display_board(solved)
+        display_board(solved, strikes)
 
     show_result(strikes, limit)
+
+def play_again():
+    while True:
+        decision = input("Would you like to play again? (y/n) ")
+        decision = decision.casefold()
+
+        if decision == 'y' or decision == 'yes':
+            return True
+        elif decision == 'n' or decision == 'no':
+            return False
+        else:
+            print("I don't understand. Please enter 'y' or 'n'.")
 
 
 def show_credits():
@@ -199,6 +226,9 @@ def show_credits():
     print("Manuela C.")
     print("November 21")
     print("")
+
+
+show_splash_screen()
     
 playing = True
 
