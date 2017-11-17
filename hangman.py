@@ -94,17 +94,18 @@ def get_guess():
 def display_board(solved, strikes):
     print("")
     print("")
+    
+    if strikes == 0:
+        print("     _________ ")
+        print("    |         |")
+        print("    |         ")
+        print("    |        ")
+        print("    |        ")
+        print("    |")
+        print("    |")
 
-    print("     _________ ")
-    print("    |         |")
-    print("    |         ")
-    print("    |        ")
-    print("    |        ")
-    print("    |")
-    print("    |")
-
-    print("")
-    print("")
+        print("")
+        print("")
 
 
     if strikes == 1:
@@ -189,7 +190,7 @@ def play(strikes, limit):
     print("")
 
     
-    while solved != puzzle:
+    while solved != puzzle and strikes <= 6:
         letter = get_guess()
         
         if letter not in puzzle:
@@ -226,6 +227,13 @@ def show_credits():
     print("Manuela C.")
     print("November 21")
     print("")
+    print("")
+
+    print("   .xxxx.")                                       
+    print("  |(o)(o)|")              
+    print(" (  (__)  )")         
+    print("   | __ |")             
+    print("    \__/")  
 
 
 show_splash_screen()
